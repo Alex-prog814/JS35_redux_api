@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Jack",
+      "position": "Front Dev.",
+      "expirience": 12,
+      "id": 1
+    },
+    {
+      "name": "ds",
+      "position": "dsfsdf",
+      "expirience": "10",
+      "id": 2
+    },
+    {
+      "name": "Tom",
+      "position": "Back Dev",
+      "expirience": "34",
+      "id": 3
+    }
+  ]
+}
