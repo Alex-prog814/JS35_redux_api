@@ -19,12 +19,26 @@ export const createUser = createAsyncThunk(
     }
 );
 
+export const getOneUser = createAsyncThunk(
+    'users/getOneUser',
+    async (userId) => {
+        const { data } = await axios.get(`${API}/${userId}`);
+        return data;
+    }
+);
+
 const usersSlice = createSlice({
     name: 'users',
     initialState: {
         users: [],
         loading: false,
-        error: null
+        error: null,
+        oneUser: null
+    },
+    reducers: {
+        clearOneUserState: (state) => {
+            state.oneUser = null;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -38,7 +52,15 @@ const usersSlice = createSlice({
         .addCase(getUsers.rejected, (state, action) => {
             state.loading = false;
         })
+        .addCase(getOneUser.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(getOneUser.fulfilled, (state, action) => {
+            state.oneUser = action.payload;
+            state.loading = false;
+        })
     }
 });
 
+export const { clearOneUserState } = usersSlice.actions;
 export default usersSlice.reducer;

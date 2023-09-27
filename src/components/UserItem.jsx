@@ -9,7 +9,7 @@ const UserItem = ({ user }) => {
         <p>{user.name}</p>
         <p>{user.position}</p>
         <p>{user.expirience}</p>
-        <button>Details</button>
+        <button onClick={() => navigate(`/details/${user.id}`)}>Details</button>
     </li>
   )
 }
