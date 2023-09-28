@@ -1,22 +1,33 @@
 {
   "users": [
     {
-      "name": "Jack",
+      "name": "Jack UPD",
       "position": "Front Dev.",
-      "expirience": 12,
+      "expirience": "122",
+      "favorites": true,
       "id": 1
     },
     {
-      "name": "ds",
-      "position": "dsfsdf",
-      "expirience": "10",
+      "name": "Helen",
+      "position": "UI/UX Designer",
+      "expirience": "3",
+      "favorites": false,
       "id": 2
     },
     {
       "name": "Tom",
       "position": "Back Dev",
       "expirience": "34",
+      "favorites": false,
       "id": 3
+    },
+    {
+      "name": "c",
+      "position": "c",
+      "expirience": "c",
+      "favorites": false,
+      "id": 4
     }
-  ]
+  ],
+  "favorites": []
 }
