@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API = 'http://localhost:8000/users';
+const FAVORITES_API = 'http://localhost:8000/favorites';
 
 export const getUsers = createAsyncThunk(
     'users/getUsers',
@@ -43,13 +44,39 @@ export const deleteUser = createAsyncThunk(
     }
 );
 
+export const addToFavorites = createAsyncThunk(
+    'users/addToFavorites',
+    async (updatedUserObj, { dispatch }) => {
+        if(updatedUserObj.favorites) {
+            const favoriteObj = {
+                id: `favorite-${updatedUserObj.id}`,
+                user: updatedUserObj
+            };
+            await axios.post(FAVORITES_API, favoriteObj);
+        } else {
+            await axios.delete(`${FAVORITES_API}/favorite-${updatedUserObj.id}`);
+        };
+        await dispatch(saveChanges(updatedUserObj));
+        dispatch(getFavorites());
+    }
+);
+
+export const getFavorites = createAsyncThunk(
+    'users/getFavorites',
+    async () => {
+        const { data } = await axios.get(FAVORITES_API);
+        return data;
+    }
+);
+
 const usersSlice = createSlice({
     name: 'users',
     initialState: {
         users: [],
         loading: false,
         error: null,
-        oneUser: null
+        oneUser: null,
+        favorites: []
     },
     reducers: {
         clearOneUserState: (state) => {
@@ -74,6 +101,9 @@ const usersSlice = createSlice({
         .addCase(getOneUser.fulfilled, (state, action) => {
             state.oneUser = action.payload;
             state.loading = false;
+        })
+        .addCase(getFavorites.fulfilled, (state, action) => {
+            state.favorites = action.payload;
         })
     }
 });

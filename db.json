@@ -1,20 +1,6 @@
 {
   "users": [
     {
-      "name": "Jack UPD",
-      "position": "Front Dev.",
-      "expirience": "122",
-      "favorites": true,
-      "id": 1
-    },
-    {
-      "name": "Helen",
-      "position": "UI/UX Designer",
-      "expirience": "3",
-      "favorites": false,
-      "id": 2
-    },
-    {
       "name": "Tom",
       "position": "Back Dev",
       "expirience": "34",

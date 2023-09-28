@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import UserFavorite from './UserFavorite';
 
-const FavoritesItem = () => {
+const FavoritesItem = ({ favoriteObj }) => {
   return (
-    <div>FavoritesItem</div>
+    <li>
+      <p>{ favoriteObj.user.name }</p>
+      <p>{ favoriteObj.user.position }</p>
+      <p>{ favoriteObj.user.expirience }</p>
+      <UserFavorite user={favoriteObj.user} />
+    </li>
   )
 }
 
